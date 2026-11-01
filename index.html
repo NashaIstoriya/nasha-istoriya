@@ -2,57 +2,65 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
 <meta name="theme-color" content="#21152d">
-<title>Ты + Я — игра для двоих</title>
+<title>Ты + Я — наша история</title>
 <style>
 :root{--bg:#1b1225;--panel:#2b1d39;--pink:#ff83b4;--rose:#ffc1d8;--gold:#ffe0a0;--text:#fff7fb;--muted:#cbbbd2;--line:#684b73;--green:#9be6c1}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 0%,#633b5b 0,transparent 34%),radial-gradient(circle at 100% 35%,#3b2854 0,transparent 35%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
-button,input,textarea{font:inherit}button{cursor:pointer;border:0}.wrap{width:min(760px,100%);margin:auto;padding:16px 15px 40px}
-header{text-align:center;padding:22px 0 15px}.logo{font-size:clamp(42px,10vw,66px);font-weight:950;letter-spacing:-3px;line-height:1}.logo span{color:var(--pink)}.tag{color:var(--muted);margin-top:9px}
+button,input{font:inherit}button{cursor:pointer;border:0}.wrap{width:min(700px,100%);margin:auto;padding:12px 15px 36px}
+header{text-align:center;padding:23px 0 15px}.logo{font-size:clamp(42px,10vw,66px);font-weight:950;letter-spacing:-3px;line-height:1}.logo span{color:var(--pink)}.tag{color:var(--muted);margin-top:9px}
 .card{background:linear-gradient(145deg,rgba(58,39,75,.97),rgba(36,24,49,.97));border:1px solid var(--line);border-radius:23px;padding:19px;margin:14px 0;box-shadow:0 18px 50px #08040d66}
 h2{margin:0 0 12px;font-size:22px}p{line-height:1.5;color:var(--muted)}label{display:block;font-size:14px;color:var(--muted);margin:12px 0 6px}
-input,textarea{width:100%;border:1px solid var(--line);background:#1b1324;color:white;border-radius:14px;padding:13px;outline:none}textarea{min-height:110px;resize:vertical}
+input{width:100%;border:1px solid var(--line);background:#1b1324;color:white;border-radius:14px;padding:13px;outline:none}
 .row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1;min-width:130px}
-.btn{background:linear-gradient(135deg,#ff91bc,#f0609a);color:#35152a;font-weight:850;border-radius:14px;padding:13px 15px;box-shadow:0 6px 18px #e9519033}.btn.secondary{background:#493455;color:white;border:1px solid #765b80;box-shadow:none}.btn.ghost{background:transparent;color:var(--rose);border:1px solid var(--line);box-shadow:none}.btn:disabled{opacity:.42;cursor:not-allowed}
+.btn{background:linear-gradient(135deg,#ff91bc,#f0609a);color:#35152a;font-weight:850;border-radius:14px;padding:13px 15px;box-shadow:0 6px 18px #e9519033}.btn.secondary{background:#493455;color:white;border:1px solid #765b80;box-shadow:none}.btn.ghost{background:transparent;color:var(--rose);border:1px solid var(--line);box-shadow:none}.btn:disabled{opacity:.4;cursor:not-allowed}
 .small{font-size:13px;color:var(--muted)}.status{padding:11px 13px;background:#201629;border:1px solid var(--line);border-radius:12px;color:var(--muted);font-size:13px;margin:12px 0}
 .hidden{display:none!important}.players{display:flex;gap:10px;margin:14px 0}.player{flex:1;text-align:center;padding:12px;background:#21172b;border-radius:16px;border:1px solid var(--line)}.player b{display:block}.dot{display:inline-block;width:8px;height:8px;background:var(--green);border-radius:50%;margin-right:6px}
-.modegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.mode{padding:14px;border:1px solid var(--line);border-radius:17px;background:#24182f;color:white;text-align:left;min-height:105px}.mode strong{display:block;font-size:15px;margin:6px 0}.mode span{font-size:12px;color:var(--muted)}.mode.selected{border:2px solid var(--pink);background:#4a2945}
-.pills{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.pill{border:1px solid var(--line);border-radius:999px;padding:8px 12px;color:var(--muted);background:#21162c}.pill.active{background:#6b365a;border-color:var(--pink);color:white}
-.question{font-size:clamp(22px,5vw,30px);font-weight:900;line-height:1.2;margin:16px 0}.option{display:block;width:100%;text-align:left;padding:14px;margin:9px 0;border:1px solid var(--line);border-radius:14px;background:#24182f;color:white}.option.chosen{border:2px solid var(--pink);background:#60334f}
-.result{text-align:center;font-size:20px;font-weight:850;padding:16px;border-radius:16px;background:#482a47;margin:14px 0}.heart{font-size:35px;animation:pulse 1.2s infinite}@keyframes pulse{50%{transform:scale(1.16)}}.footer{text-align:center;color:#a993b0;font-size:12px;margin-top:24px}
-@media(max-width:480px){.wrap{padding:10px}.card{padding:15px}.modegrid{grid-template-columns:1fr 1fr}.mode{padding:11px;min-height:118px}}
+.topic{padding:16px;border:2px solid var(--pink);border-radius:17px;background:#4a2945;margin:14px 0}.topic strong{display:block;font-size:18px;margin:5px 0}.question{font-size:clamp(23px,5.5vw,32px);font-weight:900;line-height:1.2;margin:20px 0}
+.option{display:block;width:100%;text-align:left;padding:15px;margin:10px 0;border:1px solid var(--line);border-radius:14px;background:#24182f;color:white}.option.chosen{border:2px solid var(--pink);background:#60334f}
+.result{text-align:center;font-size:19px;font-weight:850;padding:16px;border-radius:16px;background:#482a47;margin:14px 0}.heart{font-size:35px;animation:pulse 1.2s infinite}@keyframes pulse{50%{transform:scale(1.16)}}
+.badge{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--rose);font-size:12px;margin-bottom:7px}.footer{text-align:center;color:#a993b0;font-size:12px;margin-top:24px}
+@media(max-width:480px){.wrap{padding:10px}.card{padding:15px}}
 </style>
 </head>
 <body><div class="wrap">
-<header><div class="logo">Ты <span>+</span> Я</div><div class="tag">ваша маленькая игра для двоих ❤️</div></header>
+<header><div class="logo">Ты <span>+</span> Я</div><div class="tag">небольшая игра про вашу историю ❤️</div></header>
 
 <section id="setup" class="card">
-<h2>Начнём ваше приключение</h2>
-<div class="row"><div><label>Твоё имя</label><input id="name" maxlength="18" placeholder="Например, Макс"></div><div><label>Код комнаты</label><input id="roomCode" maxlength="8" placeholder="Введи код" autocapitalize="characters"></div></div>
-<div class="row" style="margin-top:14px"><button class="btn" id="createBtn">Создать комнату</button><button class="btn secondary" id="joinBtn">Войти по коду</button></div>
-<div id="setupStatus" class="status">Подключаемся к игре…</div><p class="small">Один создаёт комнату и отправляет код второму. В комнате могут играть двое.</p>
+<h2>Создаём вашу комнату</h2>
+<label>Твоё имя</label><input id="name" maxlength="18" placeholder="Например, Макс">
+<div class="row" style="margin-top:14px"><button class="btn" id="createBtn">Создать комнату</button></div>
+<label>Или введи код комнаты</label><input id="roomCode" maxlength="8" placeholder="Код от партнёра" autocapitalize="characters">
+<button class="btn secondary" id="joinBtn" style="width:100%;margin-top:10px">Войти по коду</button>
+<div id="setupStatus" class="status">Подключаемся к игре…</div>
+<p class="small">Создатель комнаты — ведущий. Только он управляет настройками и переключает карточки.</p>
 </section>
 
 <section id="lobby" class="hidden">
-<div class="card"><div class="row" style="align-items:center"><div><h2>Ваша комната ❤️</h2><div class="small">Код для второго игрока</div></div><button class="btn secondary" id="copyCode">Копировать код</button></div>
-<div class="question" id="roomLabel" style="letter-spacing:5px;color:var(--gold)"></div><div class="players" id="players"></div><div class="status" id="lobbyStatus">Ждём второго игрока…</div></div>
-<div class="card"><h2>Выберите режим</h2><div class="modegrid" id="modes">
-<button class="mode selected" data-mode="match">💞<strong>На одной волне</strong><span>Одновременно отвечаете и сравниваете ответы</span></button>
-<button class="mode" data-mode="truth">💌<strong>Правда</strong><span>Личные вопросы и честные ответы</span></button>
-<button class="mode" data-mode="dare">🔥<strong>Действие</strong><span>Милые, смешные и смелые задания</span></button>
-<button class="mode" data-mode="guess">🔮<strong>Угадай меня</strong><span>Угадай выбор своего партнёра</span></button>
-<button class="mode" data-mode="story">📖<strong>Наша история</strong><span>Вопросы о любви и совместных моментах</span></button>
-<button class="mode" data-mode="ours">💗<strong>Только для нас</strong><span>Карточки, вдохновлённые вашей историей</span></button>
+<div class="card">
+<div class="row" style="align-items:center"><div><h2>Ваша комната ❤️</h2><div class="small">Код для второго игрока</div></div><button class="btn secondary" id="copyCode">Копировать код</button></div>
+<div class="question" id="roomLabel" style="letter-spacing:5px;color:var(--gold)"></div>
+<div class="players" id="players"></div><div class="status" id="lobbyStatus">Ждём второго игрока…</div>
+<div class="topic"><span class="badge">Единственная тема на старте</span><strong>💗 Первое знакомство</strong><span class="small">Вопросы о том, как вы встретились, сближались и делали первые шаги.</span></div>
+<div id="hostControls" class="hidden">
+<div class="status">Ты ведущий комнаты. Только у тебя есть управление игрой.</div>
+<button class="btn" id="startBtn" style="width:100%" disabled>Начать игру вдвоём</button>
 </div>
-<label>Уровень настроения</label><div class="pills" id="levels"><button class="pill active" data-level="soft">🌸 Нежный</button><button class="pill" data-level="playful">😏 Игривый</button><button class="pill" data-level="bold">🔥 Откровенный</button></div>
-<button class="btn" id="startBtn" style="width:100%;margin-top:8px" disabled>Начать игру вдвоём</button><p class="small">Выбирайте уровень, который комфортен обоим. Любую карточку можно пропустить.</p></div>
+<div id="guestControls" class="hidden">
+<div class="status">Ты участник. Настройки и выбор карточек доступны только ведущему.</div>
+<button class="btn" id="readyBtn" style="width:100%">Я готова ❤️</button>
+</div>
+</div>
 </section>
 
 <section id="game" class="hidden"><div class="card">
-<div class="row" style="align-items:center"><div><div class="small" id="roundLabel">Карточка 1</div><h2 id="modeLabel">На одной волне</h2></div><button class="btn ghost" id="backBtn">В комнату</button></div>
-<div class="pills" id="gameLevel"></div><div class="question" id="question"></div><div id="answerArea"></div><div id="gameStatus" class="status">Ждём ответы…</div><div id="resultArea"></div>
-<div class="row" style="margin-top:12px"><button class="btn secondary" id="skipBtn">Пропустить</button><button class="btn" id="nextBtn" disabled>Следующая карточка</button></div>
+<div class="row" style="align-items:center"><div><div class="small" id="roundLabel">Вопрос 1</div><h2>💗 Первое знакомство</h2></div><span class="badge" id="roleBadge">Ведущий</span></div>
+<div class="question" id="question"></div>
+<div class="small">Каждый отвечает от своего имени: «Я» — это ты, «Ты» — это партнёр. Система сравнит, кого вы оба назвали.</div>
+<div id="answerArea"></div><div id="gameStatus" class="status">Ждём ответы…</div><div id="resultArea"></div>
+<div id="hostGameControls" class="row hidden" style="margin-top:12px"><button class="btn secondary" id="skipBtn">Пропустить</button><button class="btn" id="nextBtn" disabled>Следующий вопрос</button></div>
+<div id="guestGameNote" class="status hidden">Вопросами управляет ведущий. Выбирай ответ — дальше он переключит карточку.</div>
 </div></section>
 <div class="footer">Создано с любовью. Играйте бережно друг с другом ❤️</div>
 </div>
@@ -61,37 +69,50 @@ import{initializeApp}from"https://www.gstatic.com/firebasejs/10.12.5/firebase-ap
 import{getAuth,signInAnonymously}from"https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
 import{getDatabase,ref,set,update,get,onValue}from"https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
 const firebaseConfig={apiKey:"AIzaSyC3neKO47lWZUTUJ_EijeiYReGkRqW_CQA",authDomain:"nasha-istoriya-e40ba.firebaseapp.com",databaseURL:"https://nasha-istoriya-e40ba-default-rtdb.europe-west1.firebasedatabase.app/",projectId:"nasha-istoriya-e40ba",storageBucket:"nasha-istoriya-e40ba.firebasestorage.app",messagingSenderId:"1008261524084",appId:"1:1008261524084:web:ace2ac07274cb22728bf21"};
-const decks={
-match:{soft:[["Кто из вас дольше любит поспать?",["Я","Ты","Одинаково"]],["Кто чаще первым предлагает обняться?",["Я","Ты","Оба одинаково"]],["Кто дольше выбирает, что посмотреть вечером?",["Я","Ты","Мы оба долго выбираем"]],["Кто чаще говорит «я тебя люблю»?",["Я","Ты","Примерно поровну"]],["Кто скорее растрогается от фильма?",["Я","Ты","Оба можем"]]],playful:[["Кто чаще забирает одеяло себе?",["Я","Ты","Одеяло общее"]],["Кто первым начинает дурачиться?",["Я","Ты","Оба одновременно"]],["Кто дольше собирается перед выходом?",["Я","Ты","Вечная ничья"]],["Кто чаще хочет вкусняшек ночью?",["Я","Ты","Оба"]]],bold:[["Кто чаще первым инициирует поцелуй?",["Я","Ты","Оба"]],["Кто сильнее смущается от неожиданного комплимента?",["Я","Ты","Оба"]]]},
-truth:{soft:["Какой наш момент ты вспоминаешь с особенной теплотой?","Что во мне заставляет тебя улыбаться даже в обычный день?","Как выглядит твой идеальный вечер вдвоём?","За что ты особенно благодарен(на) нашим отношениям?"],playful:["Какое моё смешное поведение ты уже узнаёшь из тысячи?","Какое свидание ты бы устроил(а), если бы бюджет был бесконечным?","Какое прозвище мне подошло бы, но ты стесняешься его использовать?"],bold:["Какой поцелуй ты хотел(а) бы повторить прямо сейчас?","Что в нашей близости тебе особенно нравится?","Какой романтический поступок ты хотел(а) бы попробовать вместе?"]},
-dare:{soft:["Обними партнёра и не отпускай 20 секунд.","Скажи три вещи, за которые ты ценишь партнёра.","Посмотри партнёру в глаза 15 секунд и улыбнись.","Возьми партнёра за руку и придумай ваше маленькое обещание."],playful:["Изобрази, как партнёр собирается утром.","Придумай партнёру новое ласковое прозвище на сегодня.","Сделай самое нелепое романтическое признание.","Станцуйте вместе 20 секунд без музыки."],bold:["Поцелуй партнёра так, будто вы не виделись целую неделю — если обоим хочется.","Прошепчи партнёру на ухо одно желание для следующего свидания.","Устройте минуту поцелуев и объятий — только если обоим комфортно."]},
-guess:{soft:[["Что партнёр выберет для идеального вечера?",["Кино и плед","Прогулку","Ужин вне дома","Домашний вечер с разговорами"]],["Какой подарок обрадует партнёра больше?",["Впечатление","Сделанное своими руками","Вкусный сюрприз","Давно желанная вещь"]]],playful:[["Что партнёр выберет для киновечера?",["Комедию","Мелодраму","Боевик","Ужастик"]],["Какую суперспособность выбрал(а) бы партнёр?",["Читать мысли","Телепортироваться","Останавливать время","Быть невидимым(ой)"]]],bold:[["Какой поцелуй партнёр выберет?",["Нежный и долгий","Неожиданный","Страстный","Смешной и спонтанный"]]]},
-story:{soft:["Что ты помнишь о нашем первом знакомстве?","Какой наш обычный вечер стал для тебя особенно уютным?","Какой момент рядом со мной ты хотел(а) бы сохранить в памяти?","Что в нашей истории получилось неожиданно красиво?"],playful:["Кто, по-твоему, первым начал проявлять симпатию?","Какой наш случай до сих пор вызывает улыбку?","Если бы про нас снимали кино, как бы называлась первая серия?"],bold:["Какой момент между нами был самым волнующим?","Какое романтическое воспоминание ты хотел(а) бы повторить?"]},
-ours:{soft:["Вспомни нашу первую прогулку. Какая деталь особенно осталась в памяти?","Что в наших совместных вечерах стало для тебя самым родным?","Какой маленький момент из нашей истории хочется пережить ещё раз?","Когда рядом со мной ты чувствуешь себя особенно спокойно и любимой(ым)?","Какой наш общий ритуал ты хотел(а) бы сохранить надолго?"],playful:["Кто из нас скорее предложит спонтанно куда-нибудь сорваться?","Какой наш домашний вечер достоин отдельной серии сериала?","Какое наше маленькое смешное правило можно было бы записать в семейную конституцию?","Что из моих привычек ты уже считаешь частью нашего общего быта?"],bold:["Какой наш поцелуй ты помнишь особенно ярко?","Что тебе хочется чаще получать от меня — словами или поступками?","Какой новый романтический опыт ты хотел(а) бы однажды разделить со мной?"]}};
-const names={match:"На одной волне",truth:"Правда",dare:"Действие",guess:"Угадай меня",story:"Наша история",ours:"Только для нас"};
-let auth,db,uid,roomId,myName,roomData={},mode="match",level="soft",unsubscribe;
+// All choices are relative to the person answering. "self" and "partner" are converted to player IDs before comparison.
+const questions=[
+"Кто первым проявил интерес после того, как вы увидели анкеты друг друга?",
+"Кто первым написал или отправил голосовое сообщение?",
+"Кто сильнее волновался перед первой встречей?",
+"Кто первым предложил встретиться вживую?",
+"Кто первым понял, что хочет продолжения знакомства?",
+"Кто первым сделал шаг к объятиям?",
+"Кто первым заговорил о следующей встрече?",
+"Кто первым отправил сообщение «Доброе утро»?",
+"Кто первым понял, что начинает влюбляться?",
+"Кто первым решился на первый поцелуй?",
+"Кто первым сказал или написал «я тебя люблю»?",
+"Кто чаще первым предлагает провести время вместе?"
+];
+let auth,db,uid,roomId,myName,roomData={},unsubscribe=null;
 const $=id=>document.getElementById(id),safe=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function show(id){["setup","lobby","game"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
-function clean(s){return String(s||"").trim().replace(/[.#$/[\]]/g,"").slice(0,18)}
-function people(){return Object.entries(roomData.players||{}).map(([id,p])=>({id,...p}))}
-function game(){return roomData.game||null}
-function cardFor(m,l,n){let list=decks[m][l]||decks[m].soft,item=list[(n-1)%list.length];return Array.isArray(item)?{text:item[0],options:item[1]}:{text:item}}
-function renderPlayers(){let ps=people();$("players").innerHTML=ps.map((p,i)=>`<div class="player"><div class="heart">${i?"💜":"💗"}</div><b>${safe(p.name)}</b><span class="small"><span class="dot"></span>в комнате</span></div>`).join("");$("lobbyStatus").textContent=ps.length===2?"Вы оба здесь. Выбирайте режим!":"Отправь код партнёру — ждём второго игрока…";$("startBtn").disabled=ps.length!==2}
+function players(){return Object.entries(roomData.players||{}).map(([id,p])=>({id,...p}))}
+function isHost(){return roomData.host===uid}
+function otherId(){return players().find(p=>p.id!==uid)?.id}
+function current(){return roomData.game||null}
+function renderPlayers(){const ps=players();$("players").innerHTML=ps.map(p=>`<div class="player"><div class="heart">${p.id===roomData.host?"👑":"💗"}</div><b>${safe(p.name)}</b><span class="small">${p.id===roomData.host?"Ведущий":"Участник"} ${p.ready?"· готов(а)":""}</span></div>`).join("");$("lobbyStatus").textContent=ps.length===2?(ps.every(p=>p.ready)?"Вы оба готовы. Ведущий может начинать!":"Второй игрок в комнате. Нажмите «Я готова», чтобы подтвердить готовность."):"Отправь код Ире — ждём второго игрока…";$("hostControls").classList.toggle("hidden",!isHost());$("guestControls").classList.toggle("hidden",isHost());$("startBtn").disabled=ps.length!==2||!ps.every(p=>p.ready)}
 function renderLobby(){show("lobby");$("roomLabel").textContent=roomId;renderPlayers()}
-function renderGame(){let g=game();if(!g){renderLobby();return}show("game");$("roundLabel").textContent="Карточка "+g.round;$("modeLabel").textContent=names[g.mode];$("gameLevel").innerHTML=`<span class="pill active">${({soft:"🌸 Нежный",playful:"😏 Игривый",bold:"🔥 Откровенный"})[g.level]}</span>`;$("question").textContent=g.card.text;let a=g.answers||{},ids=people().map(p=>p.id),area=$("answerArea"),res=$("resultArea");res.innerHTML="";
-if(g.mode==="match"||g.mode==="guess"){if(!a[uid]){area.innerHTML=g.card.options.map((o,i)=>`<button class="option" data-i="${i}">${safe(o)}</button>`).join("");area.querySelectorAll("[data-i]").forEach(b=>b.onclick=()=>answer({choice:+b.dataset.i}))}else area.innerHTML='<div class="status">Твой ответ записан. Ждём партнёра…</div>';if(ids.length===2&&ids.every(id=>a[id])){let same=a[ids[0]].choice===a[ids[1]].choice;res.innerHTML=`<div class="result">${same?"💖 Вы на одной волне!":"😄 У вас разные ответы — есть что обсудить!"}<div class="heart">${same?"💕":"✨"}</div><div class="small">${ids.map(id=>safe(roomData.players[id].name)+": "+safe(g.card.options[a[id].choice])).join("<br>")}</div></div>`}}
-else if(g.mode==="truth"){if(!a[uid]){area.innerHTML='<label>Твой ответ</label><textarea id="typed" placeholder="Напиши, что думаешь…"></textarea><button class="btn" id="send" style="width:100%;margin-top:9px">Отправить ответ</button>';$("send").onclick=()=>{let v=$("typed").value.trim();if(v)answer({text:v})}}else area.innerHTML='<div class="status">Ответ отправлен. Ждём партнёра…</div>';if(ids.length===2&&ids.every(id=>a[id]))res.innerHTML=`<div class="result">💌 Ваши ответы<div class="small" style="text-align:left;font-weight:500;margin-top:12px">${ids.map(id=>"<b>"+safe(roomData.players[id].name)+"</b><br>"+safe(a[id].text)).join("<hr>")}</div></div>`}
-else{let actor=ids[(g.round-1)%Math.max(ids.length,1)];if(uid===actor){if(!a[uid]){area.innerHTML='<div class="status">Твой ход. Выполни задание и отметь готовность.</div><button class="btn" id="done" style="width:100%">Готово ❤️</button>';$("done").onclick=()=>answer({done:true})}else area.innerHTML='<div class="status">Отметка отправлена. Ждём партнёра…</div>'}else area.innerHTML=`<div class="status">Сейчас ходит ${safe(roomData.players[actor]?.name||"партнёр")}.</div>`;if(a[actor])res.innerHTML=`<div class="result">❤️ ${safe(roomData.players[actor]?.name||"Игрок")} выполнил(а) задание!</div>`}
-let done=ids.length===2&&ids.every(id=>a[id]);$("gameStatus").textContent=done?"Оба игрока ответили. Можно продолжать!":"Ответы сохраняются онлайн."; $("nextBtn").disabled=!done}
-async function answer(value){await update(ref(db,`rooms/${roomId}/game/answers/${uid}`),{...value,at:Date.now()})}
-async function startRound(n){await set(ref(db,`rooms/${roomId}/game`),{mode,level,round:n,card:cardFor(mode,level,n),answers:{},startedAt:Date.now()})}
-function listen(){if(unsubscribe)unsubscribe();unsubscribe=onValue(ref(db,`rooms/${roomId}`),s=>{if(!s.exists())return;roomData=s.val();if(game())renderGame();else renderLobby()})}
-async function init(){try{const app=initializeApp(firebaseConfig);auth=getAuth(app);db=getDatabase(app);await signInAnonymously(auth);uid=auth.currentUser.uid;$("setupStatus").textContent="Firebase подключён ❤️"}catch(e){$("setupStatus").textContent="Ошибка Firebase: "+e.message}}
-$("createBtn").onclick=async()=>{try{myName=clean($("name").value)||"Игрок 1";roomId=Math.random().toString(36).slice(2,8).toUpperCase();await set(ref(db,`rooms/${roomId}`),{createdAt:Date.now(),players:{[uid]:{name:myName,joinedAt:Date.now()}}});listen();renderLobby()}catch(e){$("setupStatus").textContent=e.message}};
-$("joinBtn").onclick=async()=>{try{myName=clean($("name").value)||"Игрок 2";roomId=clean($("roomCode").value).toUpperCase();if(!roomId)throw Error("Введи код комнаты");let s=await get(ref(db,`rooms/${roomId}`));if(!s.exists())throw Error("Комната не найдена — проверь код");let d=s.val();if(Object.keys(d.players||{}).length>=2&&!d.players[uid])throw Error("В комнате уже два игрока");await set(ref(db,`rooms/${roomId}/players/${uid}`),{name:myName,joinedAt:Date.now()});listen();renderLobby()}catch(e){$("setupStatus").textContent=e.message}};
+function renderGame(){const g=current();if(!g){renderLobby();return}show("game");const host=isHost(),ps=players(),a=g.answers||{};$("roundLabel").textContent=`Вопрос ${g.round} из ${questions.length}`;$("question").textContent=g.question;$("roleBadge").textContent=host?"👑 Ведущий":"💗 Участник";$("hostGameControls").classList.toggle("hidden",!host);$("guestGameNote").classList.toggle("hidden",host);
+const area=$("answerArea"),res=$("resultArea");res.innerHTML="";
+if(!a[uid]){area.innerHTML=`<button class="option" data-choice="self">🙋 Я</button><button class="option" data-choice="partner">👉 Ты</button><button class="option" data-choice="both">🤝 Мы оба / одновременно</button><button class="option" data-choice="unsure">🤔 Не помню</button>`;area.querySelectorAll("[data-choice]").forEach(b=>b.onclick=()=>submitAnswer(b.dataset.choice))}
+else{const labels={self:"Ты выбрал(а): Я",partner:"Ты выбрал(а): Ты",both:"Ты выбрал(а): Мы оба / одновременно",unsure:"Ты выбрал(а): Не помню"};area.innerHTML=`<div class="status">Ответ принят: ${labels[a[uid].choice]||"готово"} ❤️</div>`}
+const ids=ps.map(p=>p.id),complete=ids.length===2&&ids.every(id=>a[id]);
+$("gameStatus").textContent=complete?"Оба ответа получены. Ведущий может перейти дальше.":"Ответы сохраняются. После двух ответов ведущий откроет следующий вопрос.";
+if(complete){const resolve=(id,ch)=>ch==="self"?id:ch==="partner"?ids.find(x=>x!==id):ch;const x=a[ids[0]].choice,y=a[ids[1]].choice;const rx=resolve(ids[0],x),ry=resolve(ids[1],y);let match=rx===ry;let display=v=>v==="both"?"Вы оба":v==="unsure"?"Не помню":(roomData.players[v]?.name||"");let outcome=match?(rx==="both"?"Вы оба ответили: одновременно!":rx==="unsure"?"Оба пока не вспомнили 🙂":`Вы оба назвали: ${safe(display(rx))} ❤️`):"У вас разные версии — самое время вспомнить эту историю вместе!";
+res.innerHTML=`<div class="result">${match?"💖 Совпадение!":"😄 Есть расхождение!"}<div class="heart">${match?"💕":"✨"}</div><div style="font-size:16px;margin-top:8px">${outcome}</div><div class="small" style="margin-top:10px;font-weight:500;text-align:left">${ids.map(id=>`<b>${safe(roomData.players[id].name)}</b>: ${safe(a[id].choice==="self"?"Я":a[id].choice==="partner"?"Ты":a[id].choice==="both"?"Мы оба / одновременно":"Не помню")}`).join("<br>")}</div></div>`}
+$("nextBtn").disabled=!complete||!host;
+}
+async function submitAnswer(choice){await set(ref(db,`rooms/${roomId}/game/answers/${uid}`),{choice,at:Date.now()})}
+async function startQuestion(n){if(!isHost())return;if(n>questions.length){await update(ref(db,`rooms/${roomId}`),{finished:true});return}await set(ref(db,`rooms/${roomId}/game`),{round:n,question:questions[n-1],answers:{},startedAt:Date.now()});}
+function listen(){if(unsubscribe)unsubscribe();unsubscribe=onValue(ref(db,`rooms/${roomId}`),s=>{if(!s.exists())return;roomData=s.val();if(roomData.finished){show("lobby");$("lobbyStatus").textContent="Вы прошли все вопросы этой темы! ❤️";return}if(current())renderGame();else renderLobby()})}
+async function init(){try{const app=initializeApp(firebaseConfig);auth=getAuth(app);db=getDatabase(app);await signInAnonymously(auth);uid=auth.currentUser.uid;$("setupStatus").textContent="Подключение готово ❤️"}catch(e){$("setupStatus").textContent="Ошибка подключения: "+e.message}}
+$("createBtn").onclick=async()=>{try{myName=($("name").value.trim()||"Ведущий").slice(0,18);roomId=Math.random().toString(36).slice(2,8).toUpperCase();await set(ref(db,`rooms/${roomId}`),{createdAt:Date.now(),host:uid,players:{[uid]:{name:myName,ready:true,joinedAt:Date.now()}}});listen()}catch(e){$("setupStatus").textContent=e.message}};
+$("joinBtn").onclick=async()=>{try{myName=($("name").value.trim()||"Участник").slice(0,18);roomId=$("roomCode").value.trim().toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,8);if(!roomId)throw Error("Введи код комнаты");const s=await get(ref(db,`rooms/${roomId}`));if(!s.exists())throw Error("Комната не найдена — проверь код");const d=s.val();if(Object.keys(d.players||{}).length>=2&&!d.players[uid])throw Error("В комнате уже два игрока");if(d.host===uid)throw Error("Ты уже ведущий этой комнаты");await set(ref(db,`rooms/${roomId}/players/${uid}`),{name:myName,ready:false,joinedAt:Date.now()});listen()}catch(e){$("setupStatus").textContent=e.message}};
 $("copyCode").onclick=async()=>{try{await navigator.clipboard.writeText(roomId);$("copyCode").textContent="Скопировано ✓"}catch(e){prompt("Скопируй код:",roomId)}};
-document.querySelectorAll(".mode").forEach(b=>b.onclick=()=>{mode=b.dataset.mode;document.querySelectorAll(".mode").forEach(x=>x.classList.toggle("selected",x===b))});
-document.querySelectorAll("[data-level]").forEach(b=>b.onclick=()=>{level=b.dataset.level;document.querySelectorAll("[data-level]").forEach(x=>x.classList.toggle("active",x===b))});
-$("startBtn").onclick=()=>startRound(1);$("nextBtn").onclick=()=>{let g=game();if(g)startRound(g.round+1)};$("skipBtn").onclick=()=>{let g=game();if(g)startRound(g.round+1)};$("backBtn").onclick=()=>show("lobby");
+$("readyBtn").onclick=async()=>{await update(ref(db,`rooms/${roomId}/players/${uid}`),{ready:true});$("readyBtn").textContent="Готовность отмечена ✓";$("readyBtn").disabled=true};
+$("startBtn").onclick=()=>startQuestion(1);
+$("nextBtn").onclick=()=>{const g=current();if(g&&isHost())startQuestion(g.round+1)};
+$("skipBtn").onclick=()=>{const g=current();if(g&&isHost())startQuestion(g.round+1)};
 init();
 </script></body></html>
