@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#241d35">
+<title>Наша история — первая встреча</title>
+<style>
+:root{color-scheme:dark;--bg:#171321;--panel:#241d35;--line:#443653;--text:#fff8f2;--muted:#c5b9ce;--pink:#ff8eae;--blue:#8ecbff;--gold:#ffd58a}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0,#49304f 0,transparent 35%),var(--bg);color:var(--text);font:16px system-ui,-apple-system,Segoe UI,sans-serif}
+main{max-width:760px;margin:auto;padding:22px 16px 36px}.brand{font-size:13px;letter-spacing:.15em;color:var(--pink);text-transform:uppercase}
+h1{font-size:clamp(30px,7vw,48px);line-height:1.05;margin:8px 0}.sub{color:var(--muted);margin:0 0 20px}
+.panel{background:#241d35eF;border:1px solid var(--line);border-radius:20px;padding:16px;margin:14px 0}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.row>*{flex:1;min-width:0}
+label{display:block;color:var(--muted);font-size:13px;margin:8px 0 5px}
+input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:12px;background:#171321;color:white;padding:0 13px;font-size:16px}
+button{border:0;border-radius:12px;min-height:46px;padding:10px 15px;font-size:15px;font-weight:700;background:var(--pink);color:#281523;cursor:pointer}
+button.secondary{background:#3a3048;color:var(--text);border:1px solid var(--line)}button:disabled{opacity:.45;cursor:not-allowed}
+#status{font-size:13px;color:var(--muted);min-height:20px;margin-top:10px}.roomline{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.code{font-size:24px;letter-spacing:.18em;font-weight:800;color:var(--gold)}
+#map{position:relative;overflow:hidden;border-radius:18px;border:1px solid #66536d;min-height:330px;background:linear-gradient(180deg,#263e4c 0%,#315b5b 58%,#29483c 58%,#21392f 100%)}
+#map:before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 28%,#a7c8a533 0 8%,transparent 9%),radial-gradient(ellipse at 78% 20%,#a7c8a533 0 11%,transparent 12%),radial-gradient(ellipse at 60% 80%,#a7c8a522 0 14%,transparent 15%);pointer-events:none}
+.path{position:absolute;left:-8%;top:48%;width:120%;height:52px;background:#d6bd8b;border:5px solid #b39a70;border-left:0;border-right:0;transform:rotate(-12deg);opacity:.9}
+.place{position:absolute;font-size:12px;color:#fff4dc;text-shadow:0 2px 3px #172321;background:#1c302e99;padding:5px 8px;border-radius:8px}
+.player{position:absolute;transform:translate(-50%,-50%);text-align:center;transition:left .18s linear,top .18s linear;z-index:2;min-width:64px}
+.avatar{width:48px;height:48px;border-radius:50%;display:grid;place-items:center;margin:auto;border:3px solid white;font-size:25px;box-shadow:0 3px 10px #0008}
+.player small{display:inline-block;margin-top:4px;background:#171321d9;border-radius:8px;padding:3px 7px;white-space:nowrap}
+.me .avatar{background:#9a5274}.her .avatar{background:#477b9f}
+.mapnote{position:absolute;bottom:10px;left:12px;font-size:12px;color:#f7f0dc;text-shadow:0 1px 3px #000}
+.controls{display:grid;grid-template-columns:repeat(3,54px);gap:7px;justify-content:center;margin:14px auto 4px}
+.controls button{min-height:50px;padding:0;font-size:20px;background:#3a3048;color:white;border:1px solid var(--line);touch-action:manipulation}
+.controls button:nth-child(1){grid-column:2}.controls button:nth-child(2){grid-column:1;grid-row:2}.controls button:nth-child(3){grid-column:2;grid-row:2}.controls button:nth-child(4){grid-column:3;grid-row:2}
+.hint{font-size:13px;color:var(--muted);line-height:1.45}.hidden{display:none!important}
+footer{font-size:12px;color:#a99bb4;text-align:center;margin-top:20px}
+@media(max-width:420px){main{padding:17px 12px}#map{min-height:290px}}
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">маленькая игра для двоих</div>
+  <h1>Наша история ❤️</h1>
+  <p class="sub">Первая встреча. Два телефона — один общий мир.</p>
+
+  <section class="panel" id="lobby">
+    <div class="row">
+      <div><label for="nickname">Твоё имя в игре</label><input id="nickname" maxlength="16" value="Макс" autocomplete="nickname"></div>
+      <div><label for="roomInput">Код комнаты Иры</label><input id="roomInput" maxlength="8" placeholder="Например, LOVE24"></div>
+    </div>
+    <div class="row" style="margin-top:12px">
+      <button id="createBtn">Создать нашу комнату</button>
+      <button id="joinBtn" class="secondary">Войти по коду</button>
+    </div>
+    <div id="status" role="status" aria-live="polite">Подключение к Firebase ещё не выполнено.</div>
+  </section>
+
+  <section class="panel hidden" id="game">
+    <div class="roomline"><div><div class="hint">КОД ВАШЕЙ КОМНАТЫ</div><div class="code" id="roomCode">--------</div></div><button id="copyBtn" class="secondary">Скопировать код</button></div>
+    <p class="hint">Отправь Ире этот код. Пусть откроет эту же страницу на своём телефоне, введёт своё имя и нажмёт «Войти по коду».</p>
+    <div id="map" aria-label="Общая игровая карта">
+      <div class="path"></div>
+      <span class="place" style="left:8%;top:14%">🌲 Тихий парк</span>
+      <span class="place" style="right:7%;top:38%">✨ Место встречи</span>
+      <span class="place" style="left:38%;bottom:13%">🏡 Наш дом</span>
+      <div class="player me" id="playerMe" style="left:34%;top:45%"><div class="avatar">🧑🏻</div><small id="meLabel">Макс</small></div>
+      <div class="player her" id="playerHer" style="left:68%;top:58%"><div class="avatar">👩🏻</div><small id="herLabel">Ира · ждём…</small></div>
+      <div class="mapnote">Карта условная — исследуйте её вместе</div>
+    </div>
+    <div class="controls" aria-label="Управление персонажем">
+      <button type="button" data-move="up" aria-label="Вверх">▲</button>
+      <button type="button" data-move="left" aria-label="Влево">◀</button>
+      <button type="button" data-move="down" aria-label="Вниз">▼</button>
+      <button type="button" data-move="right" aria-label="Вправо">▶</button>
+    </div>
+    <p class="hint">Двигайся кнопками или стрелками клавиатуры. Позиция второго игрока обновляется в реальном времени.</p>
+    <button id="leaveBtn" class="secondary">Выйти из комнаты</button>
+  </section>
+  <footer>Прототип 0.1 · Для двоих · Firebase Realtime Database</footer>
+</main>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-auth.js";
+import { getDatabase, ref, set, update, onValue, onDisconnect, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC3neKO47lWZUTUJ_EijeiYReGkRqW_CQA",
+  authDomain: "nasha-istoriya-e40ba.firebaseapp.com",
+  databaseURL: "https://nasha-istoriya-e40ba-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "nasha-istoriya-e40ba",
+  storageBucket: "nasha-istoriya-e40ba.firebasestorage.app",
+  messagingSenderId: "1008261524084",
+  appId: "1:1008261524084:web:ace2ac07274cb22728bf21"
+};
+
+const $ = id => document.getElementById(id);
+const lobby=$("lobby"), game=$("game"), status=$("status");
+let db, uid, room="", playerRef, unsubscribeRoom=null, pos={x:34,y:45}, moveBusy=false;
+function say(message){status.textContent=message}
+function cleanName(v){return (v||"Игрок").trim().slice(0,16)||"Игрок"}
+function makeCode(){return Math.random().toString(36).slice(2,8).toUpperCase()}
+function clamp(n,min,max){return Math.max(min,Math.min(max,n))}
+function drawPlayer(el,p){if(!p)return;el.style.left=clamp(Number(p.x)||0,5,95)+"%";el.style.top=clamp(Number(p.y)||0,10,88)+"%"}
+function showGame(code){room=code;$("roomCode").textContent=code;lobby.classList.add("hidden");game.classList.remove("hidden")}
+async function connect(){
+  if(!db){
+    const app=initializeApp(firebaseConfig);const auth=getAuth(app);db=getDatabase(app);
+    const cred=await signInAnonymously(auth);uid=cred.user.uid;
+  }
+}
+async function enterRoom(code,create){
+  try{
+    say("Подключаемся…");await connect();
+    const roomRef=ref(db,"rooms/"+code);
+    if(create){
+      const snap=await new Promise(resolve=>onValue(roomRef,s=>resolve(s),{onlyOnce:true}));
+      if(snap.exists()){say("Такой код уже занят. Нажми создать ещё раз.");return}
+      await set(roomRef,{createdAt:serverTimestamp(),players:{}});
+    } else {
+      const snap=await new Promise(resolve=>onValue(roomRef,s=>resolve(s),{onlyOnce:true}));
+      if(!snap.exists()){say("Комната не найдена. Проверь код у Иры.");return}
+    }
+    const name=cleanName($("nickname").value);
+    playerRef=ref(db,`rooms/${code}/players/${uid}`);
+    pos={x:create?34:68,y:create?45:58};
+    await set(playerRef,{name,x:pos.x,y:pos.y,online:true,updatedAt:serverTimestamp()});
+    await onDisconnect(playerRef).update({online:false});
+    if(unsubscribeRoom)unsubscribeRoom();
+    unsubscribeRoom=onValue(roomRef,snap=>{
+      const data=snap.val()||{},players=Object.entries(data.players||{});
+      const other=players.find(([id])=>id!==uid);
+      const mine=players.find(([id])=>id===uid);
+      if(mine){$("meLabel").textContent=mine[1].name;drawPlayer($("playerMe"),mine[1])}
+      if(other){$("herLabel").textContent=(other[1].name||"Второй игрок")+(other[1].online?"":" · не в сети");drawPlayer($("playerHer"),other[1])}
+      else $("herLabel").textContent="Ира · ждём…";
+    });
+    $("roomInput").value=code;showGame(code);say("Вы в комнате. Отправь код второму игроку.");
+  }catch(e){console.error(e);say("Не удалось подключиться: "+(e.code||e.message||"ошибка"))}
+}
+async function move(dir){
+  if(!playerRef||moveBusy)return;moveBusy=true;
+  const step=4;
+  if(dir==="up")pos.y-=step;if(dir==="down")pos.y+=step;if(dir==="left")pos.x-=step;if(dir==="right")pos.x+=step;
+  pos.x=clamp(pos.x,5,95);pos.y=clamp(pos.y,10,88);
+  drawPlayer($("playerMe"),pos);
+  try{await update(playerRef,{x:pos.x,y:pos.y,updatedAt:serverTimestamp()})}catch(e){say("Ошибка сохранения позиции: "+e.message)}
+  moveBusy=false;
+}
+$("createBtn").addEventListener("click",()=>enterRoom(makeCode(),true));
+$("joinBtn").addEventListener("click",()=>{const c=$("roomInput").value.trim().toUpperCase();if(!/^[A-Z0-9]{4,8}$/.test(c)){say("Введи код комнаты из 4–8 символов.");return}enterRoom(c,false)});
+document.querySelectorAll("[data-move]").forEach(b=>b.addEventListener("click",()=>move(b.dataset.move)));
+document.addEventListener("keydown",e=>{if(game.classList.contains("hidden")||e.target.matches("input"))return;const d={ArrowUp:"up",ArrowDown:"down",ArrowLeft:"left",ArrowRight:"right"}[e.key];if(d){e.preventDefault();move(d)}});
+$("copyBtn").addEventListener("click",async()=>{try{await navigator.clipboard.writeText(room);say("Код скопирован: "+room)}catch{say("Код комнаты: "+room+" — скопируй его вручную")}});
+$("leaveBtn").addEventListener("click",async()=>{if(playerRef){try{await update(playerRef,{online:false})}catch{}}if(unsubscribeRoom)unsubscribeRoom();unsubscribeRoom=null;playerRef=null;game.classList.add("hidden");lobby.classList.remove("hidden");say("Ты вышел из комнаты. Код можно использовать повторно.")});
+</script>
+</body>
+</html>
